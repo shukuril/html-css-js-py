@@ -18,7 +18,7 @@ img{
     max-width: 100%;
 }
 body{
-    color: var(--tg-theme-bg-color);
+    color: var(--main-color);
     background-color: var(--tg-theme-bg-color);
 }
 .container{
