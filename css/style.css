@@ -183,7 +183,7 @@ header{
 }
 .product-box:hover{
     padding: 10px;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--tg-theme-text-color);
     transition: 0.4s;
 }
 .product-img{
@@ -203,7 +203,7 @@ header{
     position: absolute;
     bottom: 0;
     right: 0;
-    background: var(--text-color);
+    background: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
     padding: 10px;
     cursor: pointer;
