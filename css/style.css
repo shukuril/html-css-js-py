@@ -163,11 +163,11 @@ header{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, auto));
     gap: 1.5rem;
+    color: var(--tg-theme-text-color);
+    background-color: var(--tg-theme-bg-color);
 }
 .product-box{
     position: relative;
-    color: var(--tg-theme-text-color);
-    background-color: var(--tg-theme-bg-color);
 }
 .product-box:hover{
     padding: 10px;
