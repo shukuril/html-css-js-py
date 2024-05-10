@@ -40,7 +40,7 @@ function ready() {
     var addCart = document.getElementsByClassName('add-cart');
     for (var i = 0; i < addCart.length; i++) {
         var button = addCart[i];
-        button.addEventListener("click", addItemToCart); // Changed function name here
+        button.addEventListener("click", addItemToCart);
     }
     // Buy button Work
     document
@@ -75,6 +75,7 @@ function buyButtonClicked(){
 
     updateTotal();
 }
+
 
 // Remove Items From Cart
 function removeItemFromCart(event) {
@@ -111,7 +112,7 @@ function addProductToCart(title, price, productImg) {
     var cartItemsNames = cartItems.getElementsByClassName("cart-product-title");
     for (var i = 0; i < cartItemsNames.length; i++) {
         if (cartItemsNames[i].innerText.trim() === title.trim()) {
-            alert("You have already added this item to cart");
+            tg.sendData({ text: "You have already added this item to cart" });
             return;
         }
     }
@@ -160,12 +161,4 @@ function updateTotal() {
 
 }
 
-// Telegram Setup
-let tg = window.Telegram.WebApp;
-tg.exepand();
-tg.MainButton.textColor = "#ffff";
-tg.MainButton.color = "#2cab37";
-    
-Telegram.WebApp.onEvent("mainButtonClick", function(){
-    tg.sendData()
-});
+// Теперь мы будем использовать tg.sendData для отправки данных в Telegram.
