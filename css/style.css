@@ -127,7 +127,7 @@ header{
 .total-title{
     font-size: 1rem;
     font-weight: 600;
-    color: var (--tg-theme-bg-color);
+    color: var (--tg-theme-text-color);
 }
 .total-price{
     margin-left: 0.5rem;
