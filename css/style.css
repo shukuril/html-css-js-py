@@ -121,7 +121,7 @@ header{
     display: flex;
     justify-content: flex-end;
     margin-top: 1.5rem;
-    text-color: var (--tg-theme-text-color);
+    color: var (--tg-theme-text-color);
     border-top: 1px solid var(--tg-theme-text-color);
 }
 
