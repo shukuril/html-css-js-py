@@ -146,7 +146,7 @@ header{
     cursor: pointer;
 }
 .btn-buy:hover{
-    background: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
 }
 #close-cart{
     position: absolute;
