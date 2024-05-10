@@ -7,6 +7,7 @@
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
+    border-radius: 8px;
 }
 
 :root {
@@ -102,6 +103,7 @@ header{
 }
 .cart-quantity{
     border: 1px solid var(--tg-theme-text-color);
+    border-radius: 8px;
     outline-color: var(--tg-theme-button-color);
     width: 2.4rem;
     text-align: center;
