@@ -160,6 +160,3 @@ function updateTotal() {
     document.querySelector(".total-price").innerText = "$" + total;
 
 }
-
-
-
