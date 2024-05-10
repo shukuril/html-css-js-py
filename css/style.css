@@ -159,6 +159,9 @@ header{
 .shop{
     margin-top: 2rem;
 }
+.shop-container h2{
+    color: var(--tg-theme-text-color);
+}
 /* Shop Content */
 .shop-content{
     display: grid;
