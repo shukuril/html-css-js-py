@@ -14,9 +14,11 @@
     --text-color: #171427;
     --bg-color: #ffff;
 }
-img{
-    max-width: 100%;
-}
+img {
+    width: 100%; /* Ширина занимает всю доступную ширину блока */
+    height: 400px; /* Задаем фиксированную высоту, например, 200px */
+    object-fit: cover; /* Обрезаем изображения по размеру блока */
+    }
 body{
     color: var(--tg-theme-text-color);
     background-color: var(--tg-theme-bg-color);
