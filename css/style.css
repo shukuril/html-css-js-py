@@ -106,8 +106,8 @@ header{
     font-weight: 500;
 }
 .cart-quantity{
-    border: 1px solid var(--text-color);
-    outline-color: var(--main-color);
+    border: 1px solid var(--tg-theme-text-color);
+    outline-color: var(--tg-theme-text-color);
     width: 2.4rem;
     text-align: center;
     font-size: 1rem;
