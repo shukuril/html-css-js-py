@@ -10,7 +10,7 @@ dp = Dispatcher(bot)
 def fetch_data_from_website():
     try:
         # Замените 'example.com' на реальный URL веб-сайта
-        response = requests.get('http://example.com/api/data')
+        response = requests.get('https://shukuril.github.io/html-css-js-py/')
         # Предполагается, что веб-сайт возвращает данные в формате JSON
         data = response.json()
         return data
@@ -21,7 +21,7 @@ def fetch_data_from_website():
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     inline_markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    inline_markup.add(types.KeyboardButton('Открыть веб страницу', web_app=WebAppInfo(url='https://shukuril.github.io/shukuril/')))
+    inline_markup.add(types.KeyboardButton('Открыть веб страницу', web_app=WebAppInfo(url='https://shukuril.github.io/html-css-js-py/')))
     await message.answer('Привет', reply_markup=inline_markup)
 
 @dp.message_handler(content_types=['web_app_data'])
