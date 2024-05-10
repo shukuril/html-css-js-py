@@ -166,6 +166,8 @@ header{
 }
 .product-box{
     position: relative;
+    color: var(--tg-theme-text-color);
+    background-color: var(--tg-theme-bg-color);
 }
 .product-box:hover{
     padding: 10px;
