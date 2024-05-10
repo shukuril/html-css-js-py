@@ -63,7 +63,7 @@ header{
     width: 360px;
     min-height: 100vh;
     padding: 20px;
-    background-color: var(--tg-theme-bg-color);
+    background-color: var(--tg-theme-text-color);
     box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
     transition: 0.3s;
 }
