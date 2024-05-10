@@ -1,61 +1,3 @@
-const fetch = require('node-fetch');
-
-// Функция для отправки данных в Telegram
-async function send_data_to_telegram(data) {
-    // Здесь вы можете добавить логику для отправки данных в Telegram
-    console.log("Sending data to Telegram:", data);
-}
-
-// Функция для получения данных с веб-сайта
-async function fetch_data_from_website() {
-    try {
-        // Замените 'example.com' на реальный URL веб-сайта
-        const response = await fetch('https://shukuril.github.io/html-css-js-py/');
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Ошибка при получении данных с веб-сайта:", error);
-        return null;
-    }
-}
-
-// Начало обработки команды /fetch_data
-async function fetch_and_send_data() {
-    // Получаем данные с веб-сайта
-    const website_data = await fetch_data_from_website();
-    if (website_data) {
-        // Отправляем полученные данные в Telegram
-        await send_data_to_telegram(JSON.stringify(website_data, null, 4));
-        console.log("Data fetched from the website sent to Telegram.");
-    } else {
-        console.error("Failed to fetch data from the website.");
-    }
-}
-
-// Замените 'YOUR_CHAT_ID' на ваш реальный идентификатор чата в Telegram
-const YOUR_CHAT_ID = '4243773730';
-
-// Замените 'YOUR_API_KEY' на ваш реальный API ключ бота в Telegram
-const YOUR_API_KEY = '6963877013:AAFUrMcy-J8K6syj4_KLoEZVuMbCZ2hFpt0';
-
-// Запуск бота
-async function startBot() {
-    try {
-        // Ваш код инициализации бота
-        console.log("Бот запущен.");
-        // Пример отправки сообщения с данными в Telegram
-        await send_data_to_telegram("Привет из JavaScript!");
-        // Пример получения данных с веб-сайта и отправки в Telegram
-        await fetch_and_send_data();
-    } catch (error) {
-        console.error("Произошла ошибка:", error);
-    }
-}
-
-// Начало выполнения скрипта
-startBot();
-
-
 // Cart
 let cartIcon = document.querySelector("#cart-icon");
 let cart = document.querySelector(".cart");
@@ -122,7 +64,9 @@ function buyButtonClicked(){
     });
 
     // Отправка данных на Telegram
-    send_data_to_telegram({ text: message });
+    tg.sendData({
+        text: message
+    });
 
     // Очистка корзины после отправки заказа
     while (cartContent.firstChild) {
@@ -168,7 +112,7 @@ function addProductToCart(title, price, productImg) {
     var cartItemsNames = cartItems.getElementsByClassName("cart-product-title");
     for (var i = 0; i < cartItemsNames.length; i++) {
         if (cartItemsNames[i].innerText.trim() === title.trim()) {
-            send_data_to_telegram({ text: "You have already added this item to cart" });
+            tg.sendData({ text: "You have already added this item to cart" });
             return;
         }
     }
@@ -216,3 +160,6 @@ function updateTotal() {
     document.querySelector(".total-price").innerText = "$" + total;
 
 }
+
+
+
