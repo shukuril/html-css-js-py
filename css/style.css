@@ -131,12 +131,13 @@ header{
     display: flex;
     margin: 1.5rem auto 0 auto;
     padding: 12px 20px;
-    border: none;
+    border: 1 solid var(--tg-theme-button-color);
     background: var(--tg-theme-button-color);
     color: var(--tg-theme-bg-color);
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
+    border-radius: 8px;
 }
 .btn-buy:hover{
     background: var(--tg-theme-text-color);
@@ -172,6 +173,7 @@ header{
     padding: 10px;
     border: 1px solid var(--tg-theme-text-color);
     transition: 0.4s;
+    border-radius: 8px;
 }
 .product-img{
     width: 100%;
