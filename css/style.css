@@ -57,6 +57,7 @@ header{
 #cart-icon{
     font-size: 1.8rem;
     cursor: pointer;
+    color: var(--tg-theme-text-color);
 }
 
 /* Cart */
