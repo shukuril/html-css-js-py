@@ -19,7 +19,6 @@ img{
 }
 body{
     color: var(--text-color);
-    background-color: var(--tg-theme-bg-color);
 }
 .container{
     max-width: 1068px;
