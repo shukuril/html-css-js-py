@@ -160,6 +160,11 @@ header{
 .shop{
     margin-top: 2rem;
 }
+.shop-container img {
+    width: 100%; /* Ширина занимает всю доступную ширину блока */
+    height: 300px; /* Задаем фиксированную высоту, например, 200px */
+    object-fit: cover; /* Обрезаем изображения по размеру блока */
+}
 /* Shop Content */
 .shop-content{
     display: grid;
