@@ -78,7 +78,7 @@ header{
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 2rem;
-    color: var(--tg-theme-text-color);
+    color: var(--tg-theme-bg-color);
 }
 
 .cart-box{
@@ -122,7 +122,7 @@ header{
     justify-content: flex-end;
     margin-top: 1.5rem;
     color: var (--tg-theme-text-color);
-    border-top: 1px solid var(--tg-theme-text-color);
+    border-top: 1px solid var(--tg-theme-bg-color);
 }
 
 .total-title{
