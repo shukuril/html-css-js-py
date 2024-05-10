@@ -53,6 +53,7 @@ header{
 #cart-icon{
     font-size: 1.8rem;
     cursor: pointer;
+    background-color: var(--tg-theme-bg-color);
 }
 
 /* Cart */
@@ -203,7 +204,7 @@ header{
     position: absolute;
     bottom: 0;
     right: 0;
-    background: var(--tg-theme-bg-color);
+    background: var(--bg-color);
     color: var(--tg-theme-text-color);
     padding: 10px;
     cursor: pointer;
