@@ -10,9 +10,9 @@
 }
 
 :root {
-    --main-color: #fd4646;
-    --text-color: #171427;
-    --bg-color: #ffff;
+    --main-color: var(--tg-theme-button-color);
+    --text-color: var(--tg-theme-text-color);
+    --bg-color: var(--tg-theme-bg-color);
 }
 img{
     max-width: 100%;
