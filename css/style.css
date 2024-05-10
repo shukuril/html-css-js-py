@@ -65,6 +65,7 @@ header{
     padding: 20px;
     background-color: var(--tg-theme-bg-color);
     box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
+    color: var(--tg-theme-text-color);
     transition: 0.3s;
 }
 .cart.active{
