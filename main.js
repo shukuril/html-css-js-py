@@ -47,41 +47,41 @@ function ready() {
     document
         .getElementsByClassName("btn-buy")[0]
         .addEventListener("click", openOrderForm);
+
+    // Submit Order
+    document.querySelector('#submit-order').addEventListener('click', function() {
+        var name = document.querySelector('#name').value;
+        var email = document.querySelector('#email').value;
+        var address = document.querySelector('#address').value;
+
+        // Дополнительная логика для обработки заказа
+
+        // Пример вывода данных в консоль
+        console.log('Name:', name);
+        console.log('Email:', email);
+        console.log('address:', address);
+
+        // Очистка формы после отправки заказа
+        document.querySelector('#name').value = '';
+        document.querySelector('#email').value = '';
+        document.querySelector('#address').value = '';
+
+        // Закрытие окна с формой заказа
+        document.querySelector('.order-form').style.display = 'none';
+
+        // Дополнительные действия, например, обновление информации о заказе или уведомление пользователя
+    });
+
+    // Close Order Form
+    document.querySelector('#close-form').addEventListener('click', function() {
+        document.querySelector('.order-form').style.display = 'none';
+    });
 }
 
 // Open Order Form
 function openOrderForm() {
     document.querySelector('.order-form').style.display = 'block';
 }
-
-// Close Order Form
-document.querySelector('#close-form').addEventListener('click', function() {
-    document.querySelector('.order-form').style.display = 'none';
-});
-
-// Submit Order
-document.querySelector('#submit-order').addEventListener('click', function() {
-    var name = document.querySelector('#name').value;
-    var email = document.querySelector('#email').value;
-    var address = document.querySelector('#address').value;
-
-    // Дополнительная логика для обработки заказа
-
-    // Пример вывода данных в консоль
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('address:', address);
-
-    // Очистка формы после отправки заказа
-    document.querySelector('#name').value = '';
-    document.querySelector('#email').value = '';
-    document.querySelector('#address').value = '';
-
-    // Закрытие окна с формой заказа
-    document.querySelector('.order-form').style.display = 'none';
-
-    // Дополнительные действия, например, обновление информации о заказе или уведомление пользователя
-});
 
 // Buy Button
 function buyButtonClicked() {
@@ -205,3 +205,26 @@ function updateTotal() {
 }
 
 // Теперь мы будем использовать tg.sendData для отправки данных в Telegram.
+
+// Функция для фильтрации товаров по имени
+function filterProductsByName(name) {
+    var products = document.querySelectorAll('.product-box');
+    
+    products.forEach(function(product) {
+        var productName = product.dataset.name;
+        
+        // If selected name is "All" or product name matches the selected name, display the product
+        if (name === 'All' || productName === name) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+// Добавляем слушатель событий для изменения выбранного имени
+document.getElementById('name-filter').addEventListener('change', function() {
+    var selectedName = this.value;
+    filterProductsByName(selectedName);
+});
+
