@@ -132,7 +132,7 @@ header {
 
 .cart-remove {
     font-size: 24px;
-    color: var(--tg-theme-button-color);
+    color: var(--tg-theme-text-color);
     cursor: pointer;
 }
 
@@ -157,8 +157,8 @@ header {
     margin: 1.5rem auto 0 auto;
     padding: 12px 20px;
     border: 1 solid var(--tg-theme-button-color);
-    background: var(--tg-theme-button-color);
-    color: var(--tg-theme-bg-color);
+    background: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
@@ -166,7 +166,7 @@ header {
 }
 
 .btn-buy:hover {
-    background: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
 }
 
 #close-cart {
@@ -211,7 +211,7 @@ header {
 
 .shop-categories select:hover,
 .shop-categories select:focus {
-    border-color: #555;
+    border-color: var(--tg-theme-text-color);
 }
 
 
@@ -253,8 +253,8 @@ header {
     position: absolute;
     bottom: 0;
     right: 0;
-    background: var(--tg-theme-text-color);
-    color: var(--tg-theme-bg-color);
+    background: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
     padding: 10px;
     cursor: pointer;
 }
@@ -293,7 +293,7 @@ header {
     margin-bottom: 15px;
     border: 1px solid var(--tg-theme-text-color);
     border-radius: 8px;
-    background-color: transparent;
+    background-color: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
     font-size: 1rem;
     outline: none;
@@ -301,7 +301,7 @@ header {
 
 .order-form button {
     background-color: var(--tg-theme-button-color);
-    color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
     font-weight: 600;
     cursor: pointer;
 }
