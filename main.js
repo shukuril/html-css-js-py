@@ -197,11 +197,10 @@ function updateTotal() {
         var quantity = quantityElement.value;
         total += price * quantity;
     }
-    // If price Contain some Cents Value
-    total = Math.round(total * 100) / 100;
+    // If price contains some cents value
+    total = total.toFixed(3);
    
     document.querySelector(".total-price").innerText = "sum " + total;
-
 }
 
 // Теперь мы будем использовать tg.sendData для отправки данных в Telegram.
