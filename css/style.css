@@ -1,4 +1,4 @@
-*{
+* {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -15,22 +15,32 @@
     --tg-theme-text-color: #ffffff;
     --tg-theme-bg-color: #212121;
 }
-img{
+
+img {
     max-width: 100%;
 }
-body{
+.shop-content img {
+    width: 100%; /* Ширина занимает всю доступную ширину блока */
+    height: 400px; /* Задаем фиксированную высоту, например, 200px */
+    object-fit: cover; /* Обрезаем изображения по размеру блока */
+}
+
+body {
     color: var(--tg-theme-text-color);
 }
-.container{
+
+.container {
     max-width: 1068px;
     margin: auto;
     width: 100%;
 }
-section{
+
+section {
     padding: 4rem 0 3rem;
 }
+
 /* Header */
-header{
+header {
     position: fixed;
     top: 0;
     left: 0;
@@ -39,24 +49,27 @@ header{
     box-shadow: 0 1px 4px hsl(0 4% 15% / 10%);
     z-index: 100;
 }
-.nav{
+
+.nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
 }
-.logo{
+
+.logo {
     font-size: 1.1rem;
     color: var(--tg-theme-text-color);
     font-weight: 400;
 }
-#cart-icon{
+
+#cart-icon {
     font-size: 1.8rem;
     cursor: pointer;
 }
 
 /* Cart */
-.cart{
+.cart {
     position: fixed;
     top: 0;
     right: -100%;
@@ -67,41 +80,48 @@ header{
     box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
     transition: 0.3s;
 }
-.cart.active{
+
+.cart.active {
     right: 0;
 }
-.cart-title{
+
+.cart-title {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 2rem;
 }
 
-.cart-box{
+.cart-box {
     display: grid;
     grid-template-columns: 32% 50% 18%;
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
 }
-.cart-img{
+
+.cart-img {
     width: 100px;
     height: 100px;
     object-fit: contain;
     padding: 10px;
 }
-.detail-box{
+
+.detail-box {
     display: grid;
     row-gap: 0.5rem;
 }
-.cart-product-title{
+
+.cart-product-title {
     font-size: 1rem;
     text-transform: uppercase;
 }
-.cart-price{
+
+.cart-price {
     font-weight: 500;
 }
-.cart-quantity{
+
+.cart-quantity {
     border: 1px solid var(--tg-theme-text-color);
     border-radius: 8px;
     outline-color: var(--tg-theme-button-color);
@@ -109,25 +129,30 @@ header{
     text-align: center;
     font-size: 1rem;
 }
-.cart-remove{
+
+.cart-remove {
     font-size: 24px;
     color: var(--tg-theme-button-color);
     cursor: pointer;
 }
-.total{
+
+.total {
     display: flex;
     justify-content: flex-end;
     margin-top: 1.5rem;
     border-top: 1px solid var(--tg-theme-text-color);
 }
-.total-title{
+
+.total-title {
     font-size: 1rem;
     font-weight: 600;
 }
-.total-price{
+
+.total-price {
     margin-left: 0.5rem;
 }
-.btn-buy{
+
+.btn-buy {
     display: flex;
     margin: 1.5rem auto 0 auto;
     padding: 12px 20px;
@@ -139,10 +164,12 @@ header{
     cursor: pointer;
     border-radius: 8px;
 }
-.btn-buy:hover{
+
+.btn-buy:hover {
     background: var(--tg-theme-text-color);
 }
-#close-cart{
+
+#close-cart {
     position: absolute;
     top: 1rem;
     right: 0.8rem;
@@ -151,49 +178,58 @@ header{
     cursor: pointer;
 }
 
-.section-title{
+.section-title {
     font-size: 1.5rem;
     font-weight: 600;
     text-align: center;
     margin-bottom: 1.5rem;
 }
-.shop{
+
+.shop {
     margin-top: 2rem;
 }
+
 .shop-container img {
-    width: 100%; /* Ширина занимает всю доступную ширину блока */
-    height: 300px; /* Задаем фиксированную высоту, например, 200px */
-    object-fit: cover; /* Обрезаем изображения по размеру блока */
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
 }
+
 /* Shop Content */
-.shop-content{
+.shop-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, auto));
     gap: 1.5rem;
 }
-.product-box{
+
+.product-box {
     position: relative;
 }
-.product-box:hover{
+
+.product-box:hover {
     padding: 10px;
     border: 1px solid var(--tg-theme-text-color);
     transition: 0.4s;
     border-radius: 8px;
 }
-.product-img{
+
+.product-img {
     width: 100%;
     height: auto;
     margin-bottom: 0.5rem;
 }
-.product-title{
+
+.product-title {
     font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
 }
-.price{
+
+.price {
     font-weight: 500;
 }
-.add-cart{
+
+.add-cart {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -202,8 +238,56 @@ header{
     padding: 10px;
     cursor: pointer;
 }
-.add-cart:hover{
+
+.add-cart:hover {
     background: hsl(249, 32%, 17%);
+}
+
+/* Order Form */
+.order-form {
+    display: none;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--tg-theme-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 101;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-form h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-form input[type="text"],
+.order-form input[type="email"],
+.order-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--tg-theme-text-color);
+    border-radius: 8px;
+    background-color: transparent;
+    color: var(--tg-theme-text-color);
+    font-size: 1rem;
+    outline: none;
+}
+
+.order-form button {
+    background-color: var(--tg-theme-button-color);
+    color: var(--tg-theme-bg-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.order-form button:hover {
+    background-color: var(--tg-theme-text-color);
 }
 
 /* Для экранов с шириной менее 1080px */
