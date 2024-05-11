@@ -59,7 +59,7 @@ header {
 
 .logo {
     font-size: 1.1rem;
-    color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
     font-weight: 400;
 }
 
@@ -179,7 +179,7 @@ header {
 }
 
 .section-title {
-    color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
     font-size: 1.5rem;
     font-weight: 600;
     text-align: center;
@@ -225,7 +225,7 @@ header {
 
 .product-box {
     position: relative;
-    color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
 }
 
 .product-box:hover {
