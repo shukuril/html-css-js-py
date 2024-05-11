@@ -52,11 +52,20 @@
     <!--  Shop  -->
     <section class="shop container">
         <h2 class="section-title">Mahsulotlar</h2>
+        <!-- Фильтр товаров -->
+        <div class="shop-categories">
+            <select id="name-filter">
+                <option value="All">All</option>
+                <option value="FUTBOLKA">FUTBOLKA</option>
+                <option value="DVOYKA">DVOYKA</option>
+                <!-- Add other product names here -->
+            </select>
+        </div>        
         <!-- Content -->
         <div class="shop-content">
             
             <!-- Box 1 -->
-            <div class="product-box">
+            <div class="product-box" data-name="FUTBOLKA">
                 <img src="img/img1-1.jpeg" alt="" class="product-img">
                 <h2 class="product-title">FUTBOLKA</h2>
                 <span class="price">sum 200.000</span>
@@ -81,7 +90,7 @@
 
             
             <!-- Box 2 -->
-            <div class="product-box">
+            <div class="product-box" data-name="DVOYKA">
                 <img src="img/img1-2.jpeg" alt="" class="product-img">
                 <h2 class="product-title">DVOYKA</h2>
                 <span class="price">sum 500.000</span>
@@ -105,7 +114,7 @@
             </div>
        
             <!-- Box 3 -->
-            <div class="product-box">
+            <div class="product-box" data-name="OYOQ KIM">
                 <img src="img/img1.jpeg" alt="" class="product-img">
                 <h2 class="product-title">OYOQ KIM</h2>
                 <span class="price">sum 250.000</span>
@@ -129,7 +138,7 @@
             </div>
           
             <!-- Box 4 -->
-            <div class="product-box">
+            <div class="product-box" data-name="KO'YLAK">
                 <img src="img/img2.jpeg" alt="" class="product-img">
                 <h2 class="product-title">KO'YLAK</h2>
                 <span class="price">sum 620.000</span>
