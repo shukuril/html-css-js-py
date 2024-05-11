@@ -157,7 +157,7 @@ header {
     margin: 1.5rem auto 0 auto;
     padding: 12px 20px;
     border: 1 solid var(--tg-theme-button-color);
-    background: var(--tg-theme-bg-color);
+    background: var(--tg-theme-button-color);
     color: var(--tg-theme-text-color);
     font-size: 1rem;
     font-weight: 500;
@@ -179,6 +179,7 @@ header {
 }
 
 .section-title {
+    color: var(--tg-theme-bg-color);
     font-size: 1.5rem;
     font-weight: 600;
     text-align: center;
@@ -224,6 +225,7 @@ header {
 
 .product-box {
     position: relative;
+    color: var(--tg-theme-bg-color);
 }
 
 .product-box:hover {
