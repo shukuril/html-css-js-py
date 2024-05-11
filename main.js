@@ -42,24 +42,65 @@ function ready() {
         var button = addCart[i];
         button.addEventListener("click", addItemToCart);
     }
+
     // Buy button Work
     document
         .getElementsByClassName("btn-buy")[0]
-        .addEventListener("click", buyButtonClicked);
+        .addEventListener("click", openOrderForm);
 }
 
+// Open Order Form
+function openOrderForm() {
+    document.querySelector('.order-form').style.display = 'block';
+}
+
+// Close Order Form
+document.querySelector('#close-form').addEventListener('click', function() {
+    document.querySelector('.order-form').style.display = 'none';
+});
+
+// Submit Order
+document.querySelector('#submit-order').addEventListener('click', function() {
+    var name = document.querySelector('#name').value;
+    var email = document.querySelector('#email').value;
+    var address = document.querySelector('#address').value;
+
+    // Дополнительная логика для обработки заказа
+
+    // Пример вывода данных в консоль
+    console.log('Name:', name);
+    console.log('Email:', email);
+    console.log('address:', address);
+
+    // Очистка формы после отправки заказа
+    document.querySelector('#name').value = '';
+    document.querySelector('#email').value = '';
+    document.querySelector('#address').value = '';
+
+    // Закрытие окна с формой заказа
+    document.querySelector('.order-form').style.display = 'none';
+
+    // Дополнительные действия, например, обновление информации о заказе или уведомление пользователя
+});
+
 // Buy Button
-function buyButtonClicked(){
+function buyButtonClicked() {
     var cartContent = document.querySelector(".cart-content");
     var items = cartContent.querySelectorAll('.cart-box');
 
+    if (items.length === 0) {
+        // Если корзина пуста, не показывать форму заказа
+        alert("Your cart is empty. Please add items to your cart before proceeding to checkout.");
+        return;
+    }
+
     var message = "Order Details:\n";
 
-    items.forEach(function(item){
+    items.forEach(function(item) {
         var title = item.querySelector('.cart-product-title').innerText;
         var price = item.querySelector('.cart-price').innerText;
         var quantity = item.querySelector('.cart-quantity').value;
-        
+
         message += `${title} - ${price} x ${quantity}\n`;
     });
 
@@ -75,7 +116,6 @@ function buyButtonClicked(){
 
     updateTotal();
 }
-
 
 // Remove Items From Cart
 function removeItemFromCart(event) {
@@ -100,12 +140,14 @@ function addItemToCart(event) {
     var title = shopProducts.querySelector(".product-title").innerText; // Corrected selector
     var price = shopProducts.querySelector(".price").innerText; // Corrected selector
     var productImg = shopProducts.querySelector(".product-img").src; // Corrected selector
-    addProductToCart(title, price, productImg);
+    var size = shopProducts.querySelector(".size-selector").value; // Get selected size
+    var color = shopProducts.querySelector(".color-selector").value; // Get selected color
+    addProductToCart(title, price, productImg, size, color); // Pass color to addProductToCart
     updateTotal();
 }
 
 // Add Product To Cart
-function addProductToCart(title, price, productImg) {
+function addProductToCart(title, price, productImg, size, color) {
     var cartShopBox = document.createElement("div");
     cartShopBox.classList.add("cart-box");
     var cartItems = document.querySelector(".cart-content"); // Corrected selector
@@ -117,12 +159,13 @@ function addProductToCart(title, price, productImg) {
         }
     }
 
-    
     var cartBoxContent = `
                         <img src="${productImg}" alt="" class="cart-img">
                         <div class="detail-box">
                             <div class="cart-product-title">${title}</div>
                             <div class="cart-price">${price}</div>
+                            <div class="cart-size">${size}</div>
+                            <div class="cart-color">${color}</div> <!-- Display selected color -->
                             <input type="number" value="1" class="cart-quantity">
                         </div>
                         <!-- Remove Cart -->
@@ -150,13 +193,15 @@ function updateTotal() {
         var cartBox = cartBoxes[i];
         var priceElement = cartBox.querySelector('.cart-price');
         var quantityElement = cartBox.querySelector('.cart-quantity');
-        var price = parseFloat(priceElement.innerText.replace("$", ""));
+        var price = parseFloat(priceElement.innerText.replace("sum", ""));
         var quantity = quantityElement.value;
         total += price * quantity;
     }
     // If price Contain some Cents Value
     total = Math.round(total * 100) / 100;
    
-    document.querySelector(".total-price").innerText = "$" + total;
+    document.querySelector(".total-price").innerText = "sum " + total;
 
 }
+
+// Теперь мы будем использовать tg.sendData для отправки данных в Telegram.
