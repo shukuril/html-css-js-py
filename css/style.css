@@ -206,7 +206,7 @@ header {
     background-color: var(--tg-theme-bg-color);
     color: var(--tg-theme-text-color);
     outline: none;
-    max-width: 100%;
+    width: 100%;
 }
 
 .shop-categories select:hover,
