@@ -70,6 +70,9 @@ function ready() {
         document.querySelector('.order-form').style.display = 'none';
 
         // Дополнительные действия, например, обновление информации о заказе или уведомление пользователя
+
+        // После успешного оформления заказа
+        clearCartAndTotal();
     });
 
     // Close Order Form
@@ -110,11 +113,7 @@ function buyButtonClicked() {
     });
 
     // Очистка корзины после отправки заказа
-    while (cartContent.firstChild) {
-        cartContent.removeChild(cartContent.firstChild);
-    }
-
-    updateTotal();
+    clearCartAndTotal();
 }
 
 // Remove Items From Cart
@@ -203,6 +202,17 @@ function updateTotal() {
     document.querySelector(".total-price").innerText = "sum " + total;
 }
 
+// Функция для очистки корзины и обнуления общей цены после успешного оформления заказа
+function clearCartAndTotal() {
+    var cartContent = document.querySelector(".cart-content");
+    // Очистка корзины
+    while (cartContent.firstChild) {
+        cartContent.removeChild(cartContent.firstChild);
+    }
+    // Обнуление общей цены
+    updateTotal();
+}
+
 // Теперь мы будем использовать tg.sendData для отправки данных в Telegram.
 
 // Функция для фильтрации товаров по имени
@@ -226,4 +236,3 @@ document.getElementById('name-filter').addEventListener('change', function() {
     var selectedName = this.value;
     filterProductsByName(selectedName);
 });
-
