@@ -73,7 +73,7 @@ header {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 380px;
+    width: 360px;
     min-height: 100vh;
     padding: 20px;
     background: var(--tg-theme-bg-color);
@@ -82,31 +82,31 @@ header {
     overflow-x: scroll;
 }
 
-/* Стили для контейнера с содержимым корзины */
+/* Стили для скроллбара */
 .cart-content {
     max-height: 500px; /* Максимальная высота для отображения скролла */
-    overflow-y: scroll; /* Показывать вертикальный скролл при необходимости */
-    /* Стили для скроллбара */
-    scrollbar-width: none; /* Тонкий скроллбар */
-    scrollbar-color: var(--tg-theme-bg-color) /* Цвет скроллбара и его трека */
+    /* Показывать вертикальный скролл при необходимости */
+    overflow-y: scroll; 
+    /* Скрытие стандартного скроллбара */
+    scrollbar-width: none; /* Устанавливаем тонкий скроллбар */
+    -ms-overflow-style: none; /* Устанавливаем стиль скроллбара для IE/Edge */
 }
 
 /* Стили для скроллбара в веб-китах (Chrome, Safari) */
 .cart-content::-webkit-scrollbar {
-    width: 1rem; /* Ширина скроллбара */
+    width: 5px; /* Устанавливаем ширину скроллбара */
 }
 
 /* Стили для трека скроллбара в веб-китах */
 .cart-content::-webkit-scrollbar-track {
-    background: var(--tg-theme-bg-color); /* Цвет трека скроллбара */
+    background: transparent; /* Устанавливаем прозрачный фон для трека скроллбара */
 }
 
 /* Стили для ползунка скроллбара в веб-китах */
 .cart-content::-webkit-scrollbar-thumb {
     background-color: var(--tg-theme-bg-color); /* Цвет ползунка скроллбара */
-    border-radius: 15px; /* Радиус скругления углов ползунка */
+    border-radius: 8px; /* Радиус скругления углов ползунка */
 }
-
 
 
 .cart.active {
@@ -374,6 +374,9 @@ header {
     }
     .cart{
         width: 320px;
+    }
+    .cart-content {
+        overflow-y: auto; /* Скрыть скроллер на мобильных устройствах */
     }
 }
 @media only screen and (max-width: 360px) {
