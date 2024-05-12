@@ -73,7 +73,7 @@ header {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 400px;
+    width: 360px;
     min-height: 100vh;
     padding: 20px;
     background: var(--tg-theme-bg-color);
@@ -84,16 +84,16 @@ header {
 
 /* Стили для контейнера с содержимым корзины */
 .cart-content {
-    max-height: 300px; /* Максимальная высота для отображения скролла */
-    overflow-y: 1px; /* Показывать вертикальный скролл при необходимости */
+    max-height: 500px; /* Максимальная высота для отображения скролла */
+    overflow-y: auto; /* Показывать вертикальный скролл при необходимости */
     /* Стили для скроллбара */
-    scrollbar-width: 1px; /* Тонкий скроллбар */
+    scrollbar-width: none; /* Тонкий скроллбар */
     scrollbar-color: #888888 #f0f0f0; /* Цвет скроллбара и его трека */
 }
 
 /* Стили для скроллбара в веб-китах (Chrome, Safari) */
 .cart-content::-webkit-scrollbar {
-    width: 1px; /* Ширина скроллбара */
+    width: 2rem; /* Ширина скроллбара */
 }
 
 /* Стили для трека скроллбара в веб-китах */
@@ -104,7 +104,7 @@ header {
 /* Стили для ползунка скроллбара в веб-китах */
 .cart-content::-webkit-scrollbar-thumb {
     background-color: var(--tg-theme-button-color); /* Цвет ползунка скроллбара */
-    border-radius: 10px; /* Радиус скругления углов ползунка */
+    border-radius: 15px; /* Радиус скругления углов ползунка */
 }
 
 
@@ -124,7 +124,7 @@ header {
 
 .cart-box {
     display: grid;
-    grid-template-columns: 37% 50% 18%;
+    grid-template-columns: 40% 50% 18%;
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
@@ -300,7 +300,8 @@ header {
 /* Order Form */
 .order-form {
     display: none;
-    position: relative;
+    width: 90%;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
