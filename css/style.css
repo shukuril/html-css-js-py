@@ -87,7 +87,7 @@ header {
     max-height: 500px; /* Максимальная высота для отображения скролла */
     overflow-y: auto; /* Показывать вертикальный скролл при необходимости */
     /* Стили для скроллбара */
-    scrollbar-width: thin; /* Тонкий скроллбар */
+    scrollbar-width: none; /* Тонкий скроллбар */
     scrollbar-color: #888888 #f0f0f0; /* Цвет скроллбара и его трека */
 }
 
@@ -118,11 +118,13 @@ header {
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 2rem;
+    border-bottom: 1px solid var(--tg-theme-text-color);
+    padding-bottom: 0.5rem;
 }
 
 .cart-box {
     display: grid;
-    grid-template-columns: 32% 50% 18%;
+    grid-template-columns: 40% 50% 18%;
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
@@ -169,6 +171,8 @@ header {
     justify-content: flex-end;
     margin-top: 1.5rem;
     border-top: 1px solid var(--tg-theme-text-color);
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
 }
 
 .total-title {
@@ -257,10 +261,10 @@ header {
 }
 
 .product-box:hover {
-    padding: 10px;
     border: 1px solid var(--tg-theme-text-color);
     transition: 0.4s;
     border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px var(--tg-theme-bg-color);
 }
 
 .product-img {
