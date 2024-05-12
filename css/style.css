@@ -73,7 +73,7 @@ header {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 360px;
+    width: 380px;
     min-height: 100vh;
     padding: 20px;
     background: var(--tg-theme-bg-color);
@@ -88,12 +88,12 @@ header {
     overflow-y: scroll; /* Показывать вертикальный скролл при необходимости */
     /* Стили для скроллбара */
     scrollbar-width: none; /* Тонкий скроллбар */
-    scrollbar-color: #888888 #f0f0f0; /* Цвет скроллбара и его трека */
+    scrollbar-color: var(--tg-theme-bg-color) /* Цвет скроллбара и его трека */
 }
 
 /* Стили для скроллбара в веб-китах (Chrome, Safari) */
 .cart-content::-webkit-scrollbar {
-    width: 2rem; /* Ширина скроллбара */
+    width: 1rem; /* Ширина скроллбара */
 }
 
 /* Стили для трека скроллбара в веб-китах */
@@ -103,7 +103,7 @@ header {
 
 /* Стили для ползунка скроллбара в веб-китах */
 .cart-content::-webkit-scrollbar-thumb {
-    background-color: var(--tg-theme-button-color); /* Цвет ползунка скроллбара */
+    background-color: var(--tg-theme-bg-color); /* Цвет ползунка скроллбара */
     border-radius: 15px; /* Радиус скругления углов ползунка */
 }
 
