@@ -82,6 +82,33 @@ header {
     overflow-x: scroll;
 }
 
+/* Стили для контейнера с содержимым корзины */
+.cart-content {
+    max-height: 500px; /* Максимальная высота для отображения скролла */
+    overflow-y: auto; /* Показывать вертикальный скролл при необходимости */
+    /* Стили для скроллбара */
+    scrollbar-width: thin; /* Тонкий скроллбар */
+    scrollbar-color: #888888 #f0f0f0; /* Цвет скроллбара и его трека */
+}
+
+/* Стили для скроллбара в веб-китах (Chrome, Safari) */
+.cart-content::-webkit-scrollbar {
+    width: 2rem; /* Ширина скроллбара */
+}
+
+/* Стили для трека скроллбара в веб-китах */
+.cart-content::-webkit-scrollbar-track {
+    background: var(--tg-theme-bg-color); /* Цвет трека скроллбара */
+}
+
+/* Стили для ползунка скроллбара в веб-китах */
+.cart-content::-webkit-scrollbar-thumb {
+    background-color: var(--tg-theme-button-color); /* Цвет ползунка скроллбара */
+    border-radius: 15px; /* Радиус скругления углов ползунка */
+}
+
+
+
 .cart.active {
     right: 0;
 }
@@ -99,13 +126,13 @@ header {
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
+    margin-right: 3rem;
 }
 
 .cart-img {
     width: 100px;
     height: 100px;
     object-fit: contain;
-    padding: 10px;
 }
 
 .detail-box {
