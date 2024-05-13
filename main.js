@@ -22,21 +22,20 @@ if (document.readyState == 'loading') {
 
 // Making Function
 function ready() {
-        // Remove Items From Cart
-    function removeItemFromCart(event) {
-        var buttonClicked = event.target;
-        buttonClicked.parentNode.remove();
-        updateTotal();
+    // Remove Item From Cart
+    var removeCartButtons = document.getElementsByClassName("cart-remove");
+    for (var i = 0; i < removeCartButtons.length; i++) {
+        var button = removeCartButtons[i];
+        button.addEventListener("click", removeItemFromCart);
     }
 
     // Quantity Changes
-    function quantityChanged(event) {
-        var input = event.target;
-        if (isNaN(input.value) || input.value <= 0) {
-            input.value = 1;
-        }
-        updateTotal();
+    var quantityInputs = document.getElementsByClassName("cart-quantity");
+    for (var i = 0; i < quantityInputs.length; i++) {
+        var input = quantityInputs[i];
+        input.addEventListener("change", quantityChanged);
     }
+
     // Add To Cart
     var addCart = document.getElementsByClassName('add-cart');
     for (var i = 0; i < addCart.length; i++) {
@@ -45,20 +44,28 @@ function ready() {
     }
 
     // Buy button Work
-    document.querySelector(".btn-buy").addEventListener("click", buyButtonClicked);
+    document
+        .getElementsByClassName("btn-buy")[0]
+        .addEventListener("click", openOrderForm);
 
     // Submit Order
     document.querySelector('#submit-order').addEventListener('click', function() {
         var name = document.querySelector('#name').value;
-        var email = document.querySelector('#email').value;
+        var phoneNumber = document.querySelector('#phone').value;
         var address = document.querySelector('#address').value;
 
+        // Проверяем, все ли обязательные поля заполнены
+        if (name.trim() === '' || phoneNumber.trim() === '' || address.trim() === '') {
+            alert("Please fill in all required fields (name, phone number, address) before submitting.");
+            return; // Отменяем отправку формы
+        }
+
         console.log('Name:', name);
-        console.log('Email:', email);
+        console.log('Phone Number:', phoneNumber);
         console.log('Address:', address);
 
         document.querySelector('#name').value = '';
-        document.querySelector('#email').value = '';
+        document.querySelector('#phone').value = '';
         document.querySelector('#address').value = '';
 
         document.querySelector('.order-form').style.display = 'none';
