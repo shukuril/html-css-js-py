@@ -4,9 +4,9 @@ let cart = document.querySelector(".cart");
 let closeCart = document.querySelector("#close-cart");
 
 // Open Cart
-cartIcon.onclick = () => {
+cartIcon.addEventListener("click", () => {
     cart.classList.add("active");
-};
+});
 
 // Close Cart
 closeCart.onclick = () => {
@@ -22,26 +22,52 @@ if (document.readyState == 'loading') {
 
 // Making Function
 function ready() {
-    // Remove Item From Cart
-    var removeCartButtons = document.getElementsByClassName("cart-remove");
-    for (var i = 0; i < removeCartButtons.length; i++) {
-        var button = removeCartButtons[i];
-        button.addEventListener("click", removeItemFromCart);
+        // Remove Items From Cart
+    function removeItemFromCart(event) {
+        var buttonClicked = event.target;
+        buttonClicked.parentNode.remove();
+        updateTotal();
     }
 
     // Quantity Changes
-    var quantityInputs = document.getElementsByClassName("cart-quantity");
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i];
-        input.addEventListener("change", quantityChanged);
+    function quantityChanged(event) {
+        var input = event.target;
+        if (isNaN(input.value) || input.value <= 0) {
+            input.value = 1;
+        }
+        updateTotal();
     }
-
     // Add To Cart
     var addCart = document.getElementsByClassName('add-cart');
     for (var i = 0; i < addCart.length; i++) {
         var button = addCart[i];
         button.addEventListener("click", addItemToCart);
     }
+
+    // Buy button Work
+    document.querySelector(".btn-buy").addEventListener("click", buyButtonClicked);
+
+    // Submit Order
+    document.querySelector('#submit-order').addEventListener('click', function() {
+        var name = document.querySelector('#name').value;
+        var email = document.querySelector('#email').value;
+        var address = document.querySelector('#address').value;
+
+        console.log('Name:', name);
+        console.log('Email:', email);
+        console.log('Address:', address);
+
+        document.querySelector('#name').value = '';
+        document.querySelector('#email').value = '';
+        document.querySelector('#address').value = '';
+
+        document.querySelector('.order-form').style.display = 'none';
+    });
+
+    // Close Order Form
+    document.querySelector('#close-form').addEventListener('click', function() {
+        document.querySelector('.order-form').style.display = 'none';
+    });
 
     // Filter Products by Name
     document.getElementById('name-filter').addEventListener('change', function() {
@@ -56,6 +82,46 @@ function ready() {
             }
         });
     });
+
+    // Add event listener for name filter change
+    document.getElementById('name-filter').addEventListener('change', function() {
+        var selectedName = this.value;
+        filterProductsByName(selectedName);
+    });
+}
+
+// Open Order Form
+function openOrderForm() {
+    document.querySelector('.order-form').style.display = 'block';
+}
+
+// Buy Button
+function buyButtonClicked() {
+    var cartContent = document.querySelector(".cart-content");
+    var items = cartContent.querySelectorAll('.cart-box');
+
+    if (items.length === 0) {
+        alert("Your cart is empty. Please add items to your cart before proceeding to checkout.");
+        return;
+    }
+
+    var message = "Order Details:\n";
+
+    items.forEach(function(item) {
+        var title = item.querySelector('.cart-product-title').innerText;
+        var price = item.querySelector('.cart-price').innerText;
+        var quantity = item.querySelector('.cart-quantity').value;
+
+        message += `${title} - ${price} x ${quantity}\n`;
+    });
+
+    console.log(message);
+
+    while (cartContent.firstChild) {
+        cartContent.removeChild(cartContent.firstChild);
+    }
+
+    updateTotal();
 }
 
 // Remove Items From Cart
@@ -64,7 +130,6 @@ function removeItemFromCart(event) {
     buttonClicked.parentNode.remove();
     updateTotal();
 }
-
 // Quantity Changes
 function quantityChanged(event) {
     var input = event.target;
@@ -86,7 +151,7 @@ function addItemToCart(event) {
     var productId = shopProducts.dataset.productId;
 
     addProductToCart(title, price, productImg, size, color, productId);
-    updateTotal();
+    updateTotal(); // Добавлено здесь
 }
 
 // Add Product To Cart
@@ -115,7 +180,6 @@ function addProductToCart(title, price, productImg, size, color, productId) {
                     <i class='bx bx-trash-alt cart-remove'></i>
                     <div class="cart-product-id" style="display: none;">${productId}</div>
 `;
-
     cartShopBox.innerHTML = cartBoxContent;
     cartItems.append(cartShopBox);
 
