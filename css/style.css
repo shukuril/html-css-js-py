@@ -320,7 +320,7 @@ header {
 }
 
 .order-form input[type="text"],
-.order-form input[type="email"],
+.order-form input[type="tel"],
 .order-form button {
     display: block;
     width: 100%;
