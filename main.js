@@ -166,27 +166,33 @@ function addProductToCart(title, price, productImg, size, color, productId) {
     var cartShopBox = document.createElement("div");
     cartShopBox.classList.add("cart-box");
     var cartItems = document.querySelector(".cart-content");
-    var cartItemsIds = cartItems.getElementsByClassName("cart-product-id");
-    for (var i = 0; i < cartItemsIds.length; i++) {
-        if (cartItemsIds[i].innerText.trim() === productId.trim()) {
-            alert("You have already added this item to cart");
+
+    // Create a unique key for each combination of productId, size, and color
+    var productKey = productId + '-' + size + '-' + color;
+    var cartItemsKeys = cartItems.getElementsByClassName("cart-product-key");
+
+    for (var i = 0; i < cartItemsKeys.length; i++) {
+        if (cartItemsKeys[i].innerText.trim() === productKey.trim()) {
+            alert("You have already added this item to cart with the same size and color");
             return;
         }
     }
 
     var cartBoxContent = `
-                    <img src="${productImg}" alt="" class="cart-img">
-                    <div class="detail-box">
-                        <div class="cart-product-title">${title}</div>
-                        <div class="cart-price">${price}</div>
-                        <div class="cart-size">${size}</div>
-                        <div class="cart-color">${color}</div>
-                        <input type="number" value="1" class="cart-quantity">
-                    </div>
-                    <!-- Remove Cart -->
-                    <i class='bx bx-trash-alt cart-remove'></i>
-                    <div class="cart-product-id" style="display: none;">${productId}</div>
-`;
+        <img src="${productImg}" alt="" class="cart-img">
+        <div class="detail-box">
+            <div class="cart-product-title">${title}</div>
+            <div class="cart-price">${price}</div>
+            <div class="cart-size">Size: ${size}</div>
+            <div class="cart-color">Color: ${color}</div>
+            <input type="number" value="1" class="cart-quantity">
+        </div>
+        <!-- Remove Cart -->
+        <i class='bx bx-trash-alt cart-remove'></i>
+        <div class="cart-product-id" style="display: none;">${productId}</div>
+        <div class="cart-product-key" style="display: none;">${productKey}</div>
+    `;
+
     cartShopBox.innerHTML = cartBoxContent;
     cartItems.append(cartShopBox);
 
@@ -197,6 +203,8 @@ function addProductToCart(title, price, productImg, size, color, productId) {
     cartShopBox
         .querySelector('.cart-quantity')
         .addEventListener("change", quantityChanged);
+    
+    updateTotal();
 }
 
 // Update Total
