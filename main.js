@@ -1,72 +1,56 @@
-// Cart
+// Селекторы для элементов корзины
 let cartIcon = document.querySelector("#cart-icon");
 let cart = document.querySelector(".cart");
 let closeCart = document.querySelector("#close-cart");
 let tg = window.Telegram.WebApp;
 
-// Open Cart
+// Открыть корзину
 cartIcon.addEventListener("click", () => {
     cart.classList.add("active");
 });
 
-// Close Cart
-closeCart.onclick = () => {
+// Закрыть корзину
+closeCart.addEventListener("click", () => {
     cart.classList.remove("active");
-};
+});
 
-// Cart Working JS
-if (document.readyState == 'loading') {
+// Ждем, пока DOM загрузится, прежде чем запускать функцию ready
+if (document.readyState === 'loading') {
     document.addEventListener("DOMContentLoaded", ready);
 } else {
     ready();
 }
 
-// Making Function
 function ready() {
-    // Remove Item From Cart
-    var removeCartButtons = document.getElementsByClassName("cart-remove");
-    for (var i = 0; i < removeCartButtons.length; i++) {
-        var button = removeCartButtons[i];
+    // Добавляем слушатели событий для кнопок удаления из корзины
+    let removeCartButtons = document.querySelectorAll(".cart-remove");
+    removeCartButtons.forEach(button => {
         button.addEventListener("click", removeItemFromCart);
-    }
-
-    // Quantity Changes
-    var quantityInputs = document.getElementsByClassName("cart-quantity");
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i];
-        input.addEventListener("change", quantityChanged);
-    }
-
-    // Add To Cart
-    var addCart = document.getElementsByClassName('add-cart');
-    for (var i = 0; i < addCart.length; i++) {
-        var button = addCart[i];
-        button.addEventListener("click", addItemToCart);
-    }
-
-    // Buy button Work
-    document
-        .getElementsByClassName("btn-buy")[0]
-        .addEventListener("click", buyButtonClicked);
-
-    // Filter Products by Name
-    document.getElementById('name-filter').addEventListener('change', function() {
-        var filterValue = this.value.toLowerCase();
-        var productBoxes = document.querySelectorAll('.product-box');
-        productBoxes.forEach(function(box) {
-            var productName = box.querySelector('.product-title').innerText.toLowerCase();
-            if (filterValue === 'all' || productName === filterValue) {
-                box.style.display = 'block';
-            } else {
-                box.style.display = 'none';
-            }
-        });
     });
 
-    // Add event listener for name filter change
+    // Добавляем слушатели событий для ввода количества
+    let quantityInputs = document.querySelectorAll(".cart-quantity");
+    quantityInputs.forEach(input => {
+        input.addEventListener("change", quantityChanged);
+    });
+
+    // Добавляем слушатели событий для кнопок "добавить в корзину"
+    let addCartButtons = document.querySelectorAll('.add-cart');
+    addCartButtons.forEach(button => {
+        button.addEventListener("click", addItemToCart);
+    });
+
+    // Добавляем слушатель событий для кнопки покупки
+    document.querySelector(".btn-buy").addEventListener("click", buyButtonClicked);
+
+    // Добавляем слушатель событий для фильтрации продуктов по имени
     document.getElementById('name-filter').addEventListener('change', function() {
-        var selectedName = this.value;
-        filterProductsByName(selectedName);
+        let filterValue = this.value.toLowerCase();
+        let productBoxes = document.querySelectorAll('.product-box');
+        productBoxes.forEach(box => {
+            let productName = box.querySelector('.product-title').innerText.toLowerCase();
+            box.style.display = (filterValue === 'all' || productName === filterValue) ? 'block' : 'none';
+        });
     });
 }
 
@@ -93,7 +77,8 @@ function buyButtonClicked() {
 
         message += `\nИзображение: ${imgSrc}\nНазвание: ${title}\nЦена: ${price}\nКоличество: ${quantity}\nРазмер: ${size}\nЦвет: ${color}\n`;
     });
-    const url = `https://food.bato.uz/ba.php?data=${message}`;
+
+    const url = `https://food.bato.uz/ba.php?data=test${message}`;
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -106,7 +91,6 @@ function buyButtonClicked() {
     };
     xhr.send();
 
-    // Отправка данных в Telegram Web App
     if (tg) {
         tg.sendData(message);
         // Очистка корзины после покупки
@@ -119,87 +103,89 @@ function buyButtonClicked() {
     }
 }
 
-
-// Remove Items From Cart
+// Удаление товара из корзины
 function removeItemFromCart(event) {
-    var buttonClicked = event.target;
-    buttonClicked.parentNode.remove();
+    let buttonClicked = event.target;
+    buttonClicked.parentElement.remove();
     updateTotal();
 }
-// Quantity Changes
+
+// Обработка изменения количества товаров
 function quantityChanged(event) {
-    var input = event.target;
+    let input = event.target;
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1;
     }
     updateTotal();
 }
 
-// Add To Cart
+// Добавление товара в корзину
 function addItemToCart(event) {
-    var button = event.target;
-    var shopProducts = button.parentElement;
-    var title = shopProducts.querySelector(".product-title").innerText;
-    var price = shopProducts.querySelector(".price").innerText;
-    var productImg = shopProducts.querySelector(".product-img").src;
-    var size = shopProducts.querySelector(".size-selector").value;
-    var color = shopProducts.querySelector(".color-selector").value;
-    var productId = shopProducts.dataset.productId;
+    let button = event.target;
+    let shopProducts = button.parentElement;
+    let title = shopProducts.querySelector(".product-title").innerText;
+    let price = shopProducts.querySelector(".price").innerText;
+    let productImg = shopProducts.querySelector(".product-img").src;
+    let size = shopProducts.querySelector(".size-selector").value;
+    let color = shopProducts.querySelector(".color-selector").value;
+    let productId = shopProducts.dataset.productId;
 
     addProductToCart(title, price, productImg, size, color, productId);
-    updateTotal(); // Добавлено здесь
+    updateTotal();
 }
 
-// Add Product To Cart
+// Добавление продукта в корзину
 function addProductToCart(title, price, productImg, size, color, productId) {
-    var cartShopBox = document.createElement("div");
-    cartShopBox.classList.add("cart-box");
-    var cartItems = document.querySelector(".cart-content");
-    var cartItemsIds = cartItems.getElementsByClassName("cart-product-id");
-    for (var i = 0; i < cartItemsIds.length; i++) {
-        if (cartItemsIds[i].innerText.trim() === productId.trim()) {
-            alert("You have already added this item to cart");
+    let cartItems = document.querySelector(".cart-content");
+
+    // Создание уникального ключа для каждой комбинации productId, size и color
+    let productKey = productId + '-' + size + '-' + color;
+    let cartItemsKeys = cartItems.getElementsByClassName("cart-product-key");
+
+    for (let i = 0; i < cartItemsKeys.length; i++) {
+        if (cartItemsKeys[i].innerText.trim() === productKey.trim()) {
+            alert("Вы уже добавили этот товар в корзину с таким же размером и цветом");
             return;
         }
     }
 
-    var cartBoxContent = `
-                    <img src="${productImg}" alt="" class="cart-img">
-                    <div class="detail-box">
-                        <div class="cart-product-title">${title}</div>
-                        <div class="cart-price">${price}</div>
-                        <div class="cart-size">${size}</div>
-                        <div class="cart-color">${color}</div>
-                        <input type="number" value="1" class="cart-quantity">
-                    </div>
-                    <!-- Remove Cart -->
-                    <i class='bx bx-trash-alt cart-remove'></i>
-                    <div class="cart-product-id" style="display: none;">${productId}</div>
-`;
+    // Создание нового элемента корзины
+    let cartShopBox = document.createElement("div");
+    cartShopBox.classList.add("cart-box");
+
+    let cartBoxContent = `
+        <img src="${productImg}" alt="" class="cart-img">
+        <div class="detail-box">
+            <div class="cart-product-title">${title}</div>
+            <div class="cart-price">${price}</div>
+            <div class="cart-size">Размер: ${size}</div>
+            <div class="cart-color">Цвет: ${color}</div>
+            <input type="number" value="1" class="cart-quantity">
+        </div>
+        <i class='bx bx-trash-alt cart-remove'></i>
+        <div class="cart-product-id" style="display: none;">${productId}</div>
+        <div class="cart-product-key" style="display: none;">${productKey}</div>
+    `;
+
     cartShopBox.innerHTML = cartBoxContent;
     cartItems.append(cartShopBox);
 
-    cartShopBox
-        .getElementsByClassName("cart-remove")[0]
-        .addEventListener("click", removeItemFromCart);
-
-    cartShopBox
-        .querySelector('.cart-quantity')
-        .addEventListener("change", quantityChanged);
+    // Добавление слушателей событий для нового элемента корзины
+    cartShopBox.querySelector(".cart-remove").addEventListener("click", removeItemFromCart);
+    cartShopBox.querySelector('.cart-quantity').addEventListener("change", quantityChanged);
 }
 
-// Update Total
+// Обновление общей цены в корзине
 function updateTotal() {
-    var cartBoxes = document.querySelectorAll('.cart-box');
-    var total = 0;
-    for (var i = 0; i < cartBoxes.length; i++) {
-        var cartBox = cartBoxes[i];
-        var priceElement = cartBox.querySelector('.cart-price');
-        var quantityElement = cartBox.querySelector('.cart-quantity');
-        var price = parseFloat(priceElement.innerText.replace("sum ", "").replace(",", ""));
-        var quantity = quantityElement.value;
+    let cartBoxes = document.querySelectorAll('.cart-box');
+    let total = 0;
+    cartBoxes.forEach(cartBox => {
+        let priceElement = cartBox.querySelector('.cart-price');
+        let quantityElement = cartBox.querySelector('.cart-quantity');
+        let price = parseFloat(priceElement.innerText.replace("sum ", "").replace(",", ""));
+        let quantity = quantityElement.value;
         total += price * quantity;
-    }
+    });
     total = total.toFixed(3);
-    document.querySelector(".total-price").innerText = "sum " + total; // Обновляем значение общей суммы
+    document.querySelector(".total-price").innerText = "sum " + total;
 }
