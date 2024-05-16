@@ -47,35 +47,7 @@ function ready() {
     // Buy button Work
     document
         .getElementsByClassName("btn-buy")[0]
-        .addEventListener("click", openOrderForm);
-
-    // Submit Order
-    document.querySelector('#submit-order').addEventListener('click', function() {
-        var name = document.querySelector('#name').value;
-        var phoneNumber = document.querySelector('#phone').value;
-        var address = document.querySelector('#address').value;
-
-        // Проверяем, все ли обязательные поля заполнены
-        if (name.trim() === '' || phoneNumber.trim() === '' || address.trim() === '') {
-            alert("Please fill in all required fields (name, phone number, address) before submitting.");
-            return; // Отменяем отправку формы
-        }
-
-        console.log('Name:', name);
-        console.log('Phone Number:', phoneNumber);
-        console.log('Address:', address);
-
-        document.querySelector('#name').value = '';
-        document.querySelector('#phone').value = '';
-        document.querySelector('#address').value = '';
-
-        document.querySelector('.order-form').style.display = 'none';
-    });
-
-    // Close Order Form
-    document.querySelector('#close-form').addEventListener('click', function() {
-        document.querySelector('.order-form').style.display = 'none';
-    });
+        .addEventListener("click", buyButtonClicked);
 
     // Filter Products by Name
     document.getElementById('name-filter').addEventListener('change', function() {
@@ -96,11 +68,6 @@ function ready() {
         var selectedName = this.value;
         filterProductsByName(selectedName);
     });
-}
-
-// Open Order Form
-function openOrderForm() {
-    document.querySelector('.order-form').style.display = 'block';
 }
 
 // Обработка нажатия кнопки покупки
