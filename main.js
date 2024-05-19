@@ -65,34 +65,28 @@ function buyButtonClicked() {
         return;
     }
 
-    // Формирование сообщения с деталями заказа
-    let message = "Детали заказа:\n";
+    // Собираем данные о каждом товаре в корзине
+    let products = [];
     items.forEach(item => {
         let imgSrc = item.querySelector('.cart-img').src;
         let title = item.querySelector('.cart-product-title').innerText;
         let price = item.querySelector('.cart-price').innerText;
         let quantity = item.querySelector('.cart-quantity').value;
-        let size = item.querySelector('.cart-size').innerText.replace('Size: ', '');
-        let color = item.querySelector('.cart-color').innerText.replace('Color: ', '');
+        let size = item.querySelector('.cart-size').innerText.replace('Размер: ', '');
+        let color = item.querySelector('.cart-color').innerText.replace('Цвет: ', '');
 
-        message += `\n\n\tИзображение: ${imgSrc}\n\n\tНазвание: ${title}\n\n\tЦена: ${price}\n\n\tКоличество: ${quantity}\n\n\tРазмер: ${size}\n\n\tЦвет: ${color}\n`;
+        products.push({ 
+            imgSrc: imgSrc,
+            title: title,
+            price: price,
+            quantity: quantity,
+            size: size,
+            color: color
+        });
     });
 
-    const url = `https://food.bato.uz/ba.php?data=test${message}`;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var fileContent = xhr.responseText;
-            console.log(fileContent);
-            // Use the file content in your JavaScript code
-        }
-    };
-    xhr.send();
-
     if (tg) {
-        tg.sendData(message);
+        tg.sendData(JSON.stringify(products)); // Отправка данных о товарах в виде массива JSON
         // Очистка корзины после покупки
         while (cartContent.firstChild) {
             cartContent.removeChild(cartContent.firstChild);
@@ -189,3 +183,5 @@ function updateTotal() {
     total = total.toFixed(3);
     document.querySelector(".total-price").innerText = "sum " + total;
 }
+
+
