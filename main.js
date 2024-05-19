@@ -61,7 +61,7 @@ function buyButtonClicked() {
 
     // Проверка на пустую корзину
     if (items.length === 0) {
-        alert("Ваша корзина пуста. Пожалуйста, добавьте товары в корзину перед оформлением заказа.");
+        alert("Sizning savatingiz bo'sh. Iltimos, buyurtma berishdan oldin narsalarni savatga qo'shing..");
         return;
     }
 
@@ -93,7 +93,7 @@ function buyButtonClicked() {
         }
         updateTotal();
     } else {
-        console.error("Telegram Web App недоступен.");
+        console.error("Telegram veb-ilovasi mavjud emas.");
     }
 }
 
@@ -138,7 +138,7 @@ function addProductToCart(title, price, productImg, size, color, productId) {
 
     for (let i = 0; i < cartItemsKeys.length; i++) {
         if (cartItemsKeys[i].innerText.trim() === productKey.trim()) {
-            alert("Вы уже добавили этот товар в корзину с таким же размером и цветом");
+            alert("Siz allaqachon bir xil o'lcham va rangdagi bu mahsulotni savatingizga qo'shgansiz");
             return;
         }
     }
@@ -151,10 +151,10 @@ function addProductToCart(title, price, productImg, size, color, productId) {
         <img src="${productImg}" alt="" class="cart-img">
         <div class="detail-box">
             <div class="cart-product-title">${title}</div>
-            <div class="cart-price">${price}</div>
-            <div class="cart-size">Размер: ${size}</div>
-            <div class="cart-color">Цвет: ${color}</div>
-            <input type="number" value="1" class="cart-quantity">
+            <div class="cart-price">Narxi:${price}</div>
+            <div class="cart-size">Hajmi: ${size}</div>
+            <div class="cart-color">Rangi: ${color}</div>
+            <input type="number" value="1" class="cart-quantity">Soni:
         </div>
         <i class='bx bx-trash-alt cart-remove'></i>
         <div class="cart-product-id" style="display: none;">${productId}</div>
