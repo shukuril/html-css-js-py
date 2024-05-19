@@ -154,7 +154,7 @@ function addProductToCart(title, price, productImg, size, color, productId) {
             <div class="cart-price">Narxi:${price}</div>
             <div class="cart-size">Hajmi: ${size}</div>
             <div class="cart-color">Rangi: ${color}</div>
-            <input type="number" value="1" class="cart-quantity">
+            <input type="number" value="1" class="cart-quantity">Soni:
         </div>
         <i class='bx bx-trash-alt cart-remove'></i>
         <div class="cart-product-id" style="display: none;">${productId}</div>
@@ -169,19 +169,20 @@ function addProductToCart(title, price, productImg, size, color, productId) {
     cartShopBox.querySelector('.cart-quantity').addEventListener("change", quantityChanged);
 }
 
-// Обновление общей цены в корзине
 function updateTotal() {
     let cartBoxes = document.querySelectorAll('.cart-box');
     let total = 0;
     cartBoxes.forEach(cartBox => {
         let priceElement = cartBox.querySelector('.cart-price');
         let quantityElement = cartBox.querySelector('.cart-quantity');
-        let price = parseFloat(priceElement.innerText.replace("sum ", "").replace(",", ""));
+        let priceText = priceElement.innerText; // Получаем текст цены
+        let price = parseFloat(priceText.split(':')[1]); // Разделяем строку по ":" и берем вторую часть
         let quantity = quantityElement.value;
         total += price * quantity;
     });
     total = total.toFixed(3);
     document.querySelector(".total-price").innerText = "sum " + total;
 }
+
 
 
