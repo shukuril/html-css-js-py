@@ -151,7 +151,7 @@ function addProductToCart(title, price, productImg, size, color, productId) {
         <img src="${productImg}" alt="" class="cart-img">
         <div class="detail-box">
             <div class="cart-product-title">${title}</div>
-            <div class="cart-price">Narxi:${price}</div>
+            <div class="cart-price"> ${price}</div>
             <div class="cart-size">Hajmi: ${size}</div>
             <div class="cart-color">Rangi: ${color}</div>
             <input type="number" value="1" class="cart-quantity">Soni:
