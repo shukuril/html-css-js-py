@@ -21,6 +21,59 @@ if (document.readyState === 'loading') {
     ready();
 }
 
+// ====================== Слайдер ===========================
+
+$(document).ready(function(){
+    $('.slider').each(function(){
+        var $this = $(this);
+        var $imgs = $this.find('.product-img');
+        var imgCount = $imgs.length;
+        var currentIndex = 0;
+        var autoSlideInterval = 5000; // Интервал авто-переключения в миллисекундах (здесь 5000 мс = 5 секунд)
+
+        $imgs.hide().first().show();
+        $this.append('<button class="prev">Prev</button><button class="next">Next</button>');
+
+        function showImage(index) {
+            $imgs.hide().eq(index).show();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % imgCount;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + imgCount) % imgCount;
+            showImage(currentIndex);
+        }
+
+        function autoSlide() {
+            nextImage();
+        }
+
+        $this.find('.prev').click(prevImage);
+        $this.find('.next').click(nextImage);
+
+        // Запуск авто-переключения
+        var autoSlideIntervalId = setInterval(autoSlide, autoSlideInterval);
+
+        // Остановка авто-переключения при наведении мыши на слайдер
+        $this.mouseenter(function() {
+            clearInterval(autoSlideIntervalId);
+        });
+
+        // Возобновление авто-переключения при уходе мыши с слайдера
+        $this.mouseleave(function() {
+            autoSlideIntervalId = setInterval(autoSlide, autoSlideInterval);
+        });
+    });
+});
+
+
+// ========================================================== 
+
+
 function ready() {
     // Добавляем слушатели событий для кнопок удаления из корзины
     let removeCartButtons = document.querySelectorAll(".cart-remove");
