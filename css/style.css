@@ -11,6 +11,41 @@
     border-radius: 8px;
 }
 
+/* ========================================================================== */
+
+
+/* CSS стили для кнопок "Prev" и "Next" */
+
+.slider button {
+    position: absolute;
+    top: 80%;
+    transform: translateY(-50%);
+    background-color: var(--tg-theme-bg-color);
+    color: #fff;
+    border: none;
+    padding: 3px 15px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 5px; /* Добавляем скругление углов */
+    outline: none; /* Убираем обводку */
+    transition: background-color 0.3s ease; /* Плавное изменение фона при наведении */
+}
+
+.slider .prev {
+    left: 10px;
+}
+
+.slider .next {
+    right: 10px;
+}
+
+.slider button:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Затемненный фон при наведении */
+}
+
+
+/* ============================================================================ */
+
 :root {
     --tg-theme-button-color: #aaaaaa;
     --tg-theme-text-color: #ffffff;
