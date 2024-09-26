@@ -32,7 +32,7 @@ $(document).ready(function(){
         var autoSlideInterval = 5000; // Интервал авто-переключения в миллисекундах (здесь 5000 мс = 5 секунд)
 
         $imgs.hide().first().show();
-        $this.append('<button class="prev">Prev</button><button class="next">Next</button>');
+        $this.append('<button class="prev"></button><button class="next"></button>');
 
         function showImage(index) {
             $imgs.hide().eq(index).show();
