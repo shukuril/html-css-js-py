@@ -29,10 +29,10 @@ $(document).ready(function(){
         var $imgs = $this.find('.product-img');
         var imgCount = $imgs.length;
         var currentIndex = 0;
-        var autoSlideInterval = 5000; // Интервал авто-переключения в миллисекундах (здесь 5000 мс = 5 секунд)
+        var autoSlideInterval = 2000; // Интервал авто-переключения в миллисекундах (здесь 2000 мс = 2 секунд)
 
         $imgs.hide().first().show();
-        $this.append('<button class="prev"></button><button class="next"></button>');
+        // $this.append('<button class="prev">Prev</button><button class="next">Next</button>');
 
         function showImage(index) {
             $imgs.hide().eq(index).show();
@@ -236,4 +236,3 @@ function updateTotal() {
     total = total.toFixed(3);
     document.querySelector(".total-price").innerText = "sum " + total;
 }
-
